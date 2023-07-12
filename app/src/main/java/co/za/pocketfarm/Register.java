@@ -45,6 +45,13 @@ public class Register extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(this, Launcher.class));
+        finishAffinity();
+    }
+
     private void validateData(EditText editText, String field, int index){
         if(editText.getText().toString().trim().isEmpty()){
             editText.setError(field + " is required");
