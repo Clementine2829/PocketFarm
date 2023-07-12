@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PocketFarm</string>
+    <string name="invalid_login_credentials">Invalid login credentials</string>
+
+</resources>
