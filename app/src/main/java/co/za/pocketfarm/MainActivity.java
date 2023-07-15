@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -99,9 +101,25 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     private void performSearch(String query) {
-        // Implement your search functionality here
-        // You can start a new activity, show search results, etc.
+
     }
+    private void about() {
+        startActivity(new Intent(this, About.class));
+        finishAffinity();
+    }
+    private void logout() {
+        // todo
+        // clear everything before redirecting
+        startActivity(new Intent(this, Login.class));
+        finishAffinity();
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
@@ -127,15 +145,18 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
+        int itemId = item.getItemId();
+        if (itemId == android.R.id.home) {
             // Handle the Up button (back button) click here
             finish();
             return true;
+        }else if(itemId == R.id.menu_about){
+            about();
+        }else if(itemId == R.id.menu_logout) {
+            logout();
         }
         return super.onOptionsItemSelected(item);
     }
-
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();

@@ -5,5 +5,7 @@
     <string name="todo">TODO</string>
     <string name="tips">Tips</string>
     <string name="go">go</string>
+    <string name="logout">Logout</string>
+    <string name="about">About</string>
 
 </resources>
