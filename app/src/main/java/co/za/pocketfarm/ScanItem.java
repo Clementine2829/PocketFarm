@@ -32,6 +32,7 @@ public class ScanItem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan_item);
+        setTitle("Take a photo");
 
         imageView = findViewById(R.id.imageView);
         captureButton = findViewById(R.id.captureButton);

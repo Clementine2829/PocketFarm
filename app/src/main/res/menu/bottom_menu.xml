@@ -5,6 +5,10 @@
         android:icon="@drawable/ic_home"
         android:title="Home" />
     <item
+        android:id="@+id/navigation_water_drop"
+        android:icon="@drawable/ic_water_drop"
+        android:title="Water" />
+    <item
         android:id="@+id/navigation_scan"
         android:icon="@drawable/ic_camera"
         android:title="Scan" />
@@ -12,4 +16,8 @@
         android:id="@+id/navigation_notifications"
         android:icon="@drawable/ic_notifications"
         android:title="Notifications" />
+    <item
+        android:id="@+id/navigation_chat"
+        android:icon="@drawable/ic_chat"
+        android:title="Chat" />
 </menu>

@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 public class Register extends AppCompatActivity {
 
-    boolean allIsWell[] = {true,true,true,true};
+    private final boolean [] allIsWell = {true,true,true,true};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +39,10 @@ public class Register extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.haveAccount).setOnClickListener(view -> {
+            startActivity( new Intent(this, Login.class));
+            finish();
+        });
         registerMessage.setOnClickListener(view -> {
             startActivity( new Intent(this, Login.class));
             finish();

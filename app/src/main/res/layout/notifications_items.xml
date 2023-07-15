@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:layout_marginRight="@dimen/margin_normal"
+    android:padding="@dimen/padding_normal">
+
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="150dp"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_marginTop="0dp"-->
+<!--        android:contentDescription="@string/todo"-->
+<!--        android:scaleType="centerCrop" />-->
+
+    <FrameLayout
+        android:id="@+id/imageViewHolder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="550dp"
+            android:src="@drawable/img" />
+
+        <TextView
+            android:id="@+id/subDescription"
+            android:layout_width="223dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:drawableTint="@color/white"
+            android:padding="@dimen/padding_normal"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:drawableStartCompat="@drawable/ic_report_problem" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/author"
+        android:layout_width="137dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageViewHolder"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:textColor="@color/dark_gray" />
+
+    <TextView
+        android:id="@+id/dateUpdated"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/margin_normal"
+        android:layout_marginEnd="@dimen/margin_normal"
+        android:textColor="@color/dark_gray"
+        android:textSize="@dimen/text_size_very_small"
+        android:textStyle="italic" />
+
+</FrameLayout>

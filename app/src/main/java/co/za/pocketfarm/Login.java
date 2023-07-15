@@ -18,6 +18,7 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        setTitle("Login");
 
         username = findViewById(R.id.emailEditText);
         password = findViewById(R.id.passwordEditText);
@@ -35,7 +36,7 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.forgotPasswordTextView).setOnClickListener(view -> {
+        findViewById(R.id.registerTextView).setOnClickListener(view -> {
             startActivity( new Intent(this, Register.class));
             finish();
         });
