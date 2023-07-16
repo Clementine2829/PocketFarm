@@ -1,40 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="200dp"
     android:background="@color/white"
     android:layout_marginRight="@dimen/margin_normal"
-    android:padding="@dimen/padding_normal">
-
-<!--    <ImageView-->
-<!--        android:id="@+id/imageView"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="150dp"-->
-<!--        android:layout_alignParentStart="true"-->
-<!--        android:layout_alignParentTop="true"-->
-<!--        android:layout_alignParentEnd="true"-->
-<!--        android:layout_marginTop="0dp"-->
-<!--        android:contentDescription="@string/todo"-->
-<!--        android:scaleType="centerCrop" />-->
+    android:padding="@dimen/padding_normal"
+    android:id="@+id/relativeLayout2"
+    android:orientation="vertical">
 
     <FrameLayout
         android:id="@+id/imageViewHolder"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="100dp">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
-            android:layout_height="550dp"
-            android:src="@drawable/img" />
+            android:layout_height="match_parent"
+            android:src="@drawable/img2" />
 
         <TextView
-            android:id="@+id/subDescription"
-            android:layout_width="223dp"
+            android:id="@+id/tempStatus"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:text="\tjknb fdknnlkndnlkngblnd"
             android:drawableTint="@color/white"
+            android:background="@color/green"
             android:padding="@dimen/padding_normal"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
@@ -43,24 +36,27 @@
     </FrameLayout>
 
     <TextView
-        android:id="@+id/author"
+        android:id="@+id/farmName"
         android:layout_width="137dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/imageViewHolder"
         android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/margin_normal"
         android:layout_marginTop="@dimen/margin_normal"
+        android:text="farm one"
         android:textColor="@color/dark_gray" />
 
     <TextView
-        android:id="@+id/dateUpdated"
+        android:id="@+id/weatherTemperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/margin_normal"
         android:layout_marginEnd="@dimen/margin_normal"
+        android:text="32c"
         android:textColor="@color/dark_gray"
         android:textSize="@dimen/text_size_very_small"
         android:textStyle="italic" />
 
-</FrameLayout>
+
+</RelativeLayout>

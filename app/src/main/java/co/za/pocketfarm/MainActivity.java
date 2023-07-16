@@ -10,14 +10,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,12 +28,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import co.za.pocketfarm.adaptors.TipsAdaptor;
+import co.za.pocketfarm.adaptors.TipsAndNotificationsAdaptor;
+import co.za.pocketfarm.fragmenets.NotificationsFragment;
+import co.za.pocketfarm.fragmenets.TipsFragment;
+import co.za.pocketfarm.models.ObjectTypes;
 import co.za.pocketfarm.models.Tips;
+import co.za.pocketfarm.models.TipsOrNotifications;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnItemSelectedListener {
 
     private EditText searchEditText;
+    AlertDialog.Builder dialogBuilder;
+    AlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,33 +61,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             }
         });
 
+        displayFragment(R.id.displayTipsFragment, new TipsFragment());
+        System.out.println("Notificatoips");
+        displayFragment(R.id.displayNotificationsFragment, new NotificationsFragment());
 
-
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
-
-        // Set the orientation of the layout manager to horizontal
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        recyclerView.setLayoutManager(layoutManager);
-
-        // Create and set the adapter
-        List<Tips> tipsItems = new ArrayList<>();
-        String title = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas";
-        String dateUpdated = "17/07/2023";
-        tipsItems.add(new Tips(R.drawable.img1, title, "Clement", dateUpdated));
-        title = "Maecenas ut suscipit velit, sit amet viverra lectus. Vestibulum ante ipsum primis ";
-        dateUpdated = "02/07/2023";
-        tipsItems.add(new Tips(R.drawable.img2, title, "Bob Smith", dateUpdated));
-        title = "Donec nec tellus eleifend, cursus nunc et, fermentum tellus. Phasellus sapien lacus, consequat";
-        tipsItems.add(new Tips(R.drawable.img3, title, "Sophia Moore", dateUpdated));
-        title = "Integer dolor elit, interdum nec posuere vel, laoreet non justo.";
-        dateUpdated = "29/08/2023";
-        tipsItems.add(new Tips(R.drawable.img4, title, "Jame", dateUpdated));
-        title = "Donec nec tellus eleifend, cursus nunc et, fermentum tellus. Phasellus sapien lacus, consequat";
-        tipsItems.add(new Tips(R.drawable.img5, title, "Clement", dateUpdated));
-
-
-        TipsAdaptor adapter = new TipsAdaptor(tipsItems);
-        recyclerView.setAdapter(adapter);
 
 
 //        searchEditText = findViewById(R.id.searchEditText);
@@ -100,6 +84,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         bottomNavigationView.setOnItemSelectedListener(this);
     }
 
+    private void displayFragment(int displayer, Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(displayer, fragment).commit();
+    }
     private void performSearch(String query) {
 
     }
@@ -107,11 +96,34 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         startActivity(new Intent(this, About.class));
         finishAffinity();
     }
+    private void disclaimer() {
+        startActivity(new Intent(this, Disclaimer.class));
+        finishAffinity();
+    }
     private void logout() {
         // todo
         // clear everything before redirecting
         startActivity(new Intent(this, Login.class));
         finishAffinity();
+    }
+    private void launchCamera(){
+
+        dialogBuilder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.image_picker, null);
+
+        view.findViewById(R.id.cameraPlants).setOnClickListener(view1 -> {
+            startActivity(new Intent(this, ScanItem.class));
+            finish();
+        });
+        view.findViewById(R.id.cameraPlants).setOnClickListener(view1 -> {
+            startActivity(new Intent(this, ScanItem.class));
+            finish();
+        });
+
+        dialogBuilder.setView(view);
+        dialog = dialogBuilder.create();
+        dialog.show();
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -131,8 +143,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             // Handle water drop item selection
             return true;
         } else if (itemId == R.id.navigation_scan) {
-            startActivity(new Intent(this, ScanItem.class));
-            finish();
+            launchCamera();
             return true;
         } else if (itemId == R.id.navigation_notifications) {
             // Handle Notifications item selection
@@ -152,6 +163,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             return true;
         }else if(itemId == R.id.menu_about){
             about();
+        }else if(itemId == R.id.menu_disclaimer){
+            disclaimer();
         }else if(itemId == R.id.menu_logout) {
             logout();
         }

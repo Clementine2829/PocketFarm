@@ -1,91 +1,114 @@
 package co.za.pocketfarm;
 
-import androidx.appcompat.app.AppCompatActivity;
 
-import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+
+import java.util.Objects;
 
 public class ScanItem extends AppCompatActivity {
 
-    private static final int PERMISSION_REQUEST_CODE = 1;
 
-    private ImageView imageView;
-    private Button captureButton;
-
-    private ActivityResultLauncher<Intent> cameraLauncher;
+    AlertDialog.Builder dialogBuilder;
+    AlertDialog dialog;
+    private static final int pic_id = 123;
+    // Define the button and imageview type variable
+    Button camera_open_id;
+    ImageView click_image_id;
+    boolean analyzingImage = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan_item);
-        setTitle("Take a photo");
 
-        imageView = findViewById(R.id.imageView);
-        captureButton = findViewById(R.id.captureButton);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        setTitle("Upload picture");
 
-        captureButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (ContextCompat.checkSelfPermission(ScanItem.this, Manifest.permission.CAMERA)
-                        == PackageManager.PERMISSION_GRANTED) {
-                    launchCamera();
-                } else {
-                    ActivityCompat.requestPermissions(ScanItem.this,
-                            new String[]{Manifest.permission.CAMERA}, PERMISSION_REQUEST_CODE);
+
+        click_image_id = findViewById(R.id.click_image);
+        Button btnUploadImage = findViewById(R.id.upload_image);
+
+        btnUploadImage.setOnClickListener(view -> {
+            PleaseWaitDialog pleaseWaitDialog = new PleaseWaitDialog();
+            pleaseWaitDialog.show(this, "Analyzing image. Please wait...");
+            analyzingImage = true;
+
+            pleaseWaitDialog.performBackgroundTask(new PleaseWaitDialog.OnBackgroundTaskCompleteListener() {
+                @Override
+                public void onTaskComplete() {
+                    setTitle("Image analyzed");
+
+                    launchResults();
+
+                    analyzingImage = false;
+                    btnUploadImage.setVisibility(View.GONE);
+                    click_image_id.setVisibility(View.GONE);
+                    pleaseWaitDialog.dismiss();
                 }
-            }
+            });
+
         });
 
-        cameraLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-                result -> {
-                    if (result.getResultCode() == RESULT_OK) {
-                        Intent data = result.getData();
-                        Bundle extras = data.getExtras();
-                        Bitmap imageBitmap = (Bitmap) extras.get("data");
-                        imageView.setImageBitmap(imageBitmap);
-                    }
-                });
+        Intent camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(camera_intent, pic_id);
     }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == PERMISSION_REQUEST_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                launchCamera();
-            } else {
-                Toast.makeText(this, "Camera permission denied", Toast.LENGTH_SHORT).show();
-            }
+    // This method will help to retrieve the image
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // Match the request 'pic id with requestCode
+        if (requestCode == pic_id) {
+            // BitMap is data structure of image file which store the image in memory
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            // Set the image in imageview for display
+            click_image_id.setImageBitmap(photo);
         }
     }
+    private void launchResults(){
 
-    private void launchCamera() {
-        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (cameraIntent.resolveActivity(getPackageManager()) != null) {
-            cameraLauncher.launch(cameraIntent);
-        } else {
-            Toast.makeText(this, "No camera app found", Toast.LENGTH_SHORT).show();
-        }
+        dialogBuilder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.analyzed_results, null);
+
+        view.findViewById(R.id.shopForremedies).setOnClickListener(view1 -> {
+            startActivity(new Intent(this, Catalog.class));
+            finish();
+        });
+
+        dialogBuilder.setCancelable(false);
+        dialogBuilder.setView(view);
+        dialog = dialogBuilder.create();
+        dialog.show();
+
+    }
+
+    public void backToMainPage(){
+//        if(analyzingImage){
+//            String message  = "Please wait while image is being analyzed";
+//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//            builder.setTitle("Alert!");
+//            builder.setMessage(message);
+//            builder.setPositiveButton("OKAY", (dialog, which) ->{
+//
+//            });
+//            AlertDialog alertDialog = builder.create();
+//            alertDialog.show();
+//        }else{
+            startActivity(new Intent(this, MainActivity.class));
+            finishAffinity();
+//        }
     }
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        startActivity(new Intent(this, MainActivity.class));
-        finish();
+        backToMainPage();
     }
+
 }
