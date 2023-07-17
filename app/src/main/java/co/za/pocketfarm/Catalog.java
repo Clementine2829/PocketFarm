@@ -19,7 +19,7 @@ public class Catalog extends AppCompatActivity {
         setContentView(R.layout.activity_catalog);
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        setTitle("Shop for remedies");
+        setTitle("Shop for Remedies");
 
 
         RecyclerView recyclerView = findViewById(R.id.catalogList);

@@ -26,7 +26,7 @@
             android:name=".About"
             android:exported="false" />
         <activity
-            android:name=".Launcher"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".ScanItem"
@@ -38,7 +38,7 @@
             android:name=".Register"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Launcher"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
