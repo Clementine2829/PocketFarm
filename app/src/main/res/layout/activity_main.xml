@@ -62,21 +62,12 @@
             android:scrollbarStyle="outsideOverlay"
             android:orientation="vertical">
             <FrameLayout
-                android:id="@+id/displayTipsFragment"
+                android:id="@+id/mainActivityFragment"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="match_parent"
                 android:foregroundGravity="center_vertical"
                 android:layout_below="@id/search_holder"
                 android:layout_marginTop="@dimen/margin_normal" >
-
-            </FrameLayout>
-            <FrameLayout
-                android:id="@+id/displayNotificationsFragment"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_marginTop="@dimen/margin_normal"
-                android:layout_below="@id/displayTipsFragment"
-                android:foregroundGravity="center_vertical">
 
             </FrameLayout>
 

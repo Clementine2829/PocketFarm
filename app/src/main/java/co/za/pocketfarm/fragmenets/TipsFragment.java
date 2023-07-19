@@ -57,7 +57,6 @@ public class TipsFragment extends Fragment {
         TipsAndNotificationsAdaptor adapter = new TipsAndNotificationsAdaptor(tipsObjects);
         recyclerView.setAdapter(adapter);
 
-
         return view;
     }
 }

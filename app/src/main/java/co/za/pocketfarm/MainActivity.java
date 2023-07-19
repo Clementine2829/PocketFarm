@@ -29,7 +29,9 @@ import java.util.List;
 import java.util.Objects;
 
 import co.za.pocketfarm.adaptors.TipsAndNotificationsAdaptor;
+import co.za.pocketfarm.fragmenets.MainPageFragment;
 import co.za.pocketfarm.fragmenets.NotificationsFragment;
+import co.za.pocketfarm.fragmenets.OrdersFragment;
 import co.za.pocketfarm.fragmenets.TipsFragment;
 import co.za.pocketfarm.models.ObjectTypes;
 import co.za.pocketfarm.models.Tips;
@@ -60,12 +62,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 Toast.makeText(MainActivity.this, "You have clicked on the tittle", Toast.LENGTH_LONG).show();
             }
         });
-
-        displayFragment(R.id.displayTipsFragment, new TipsFragment());
-        System.out.println("Notificatoips");
-        displayFragment(R.id.displayNotificationsFragment, new NotificationsFragment());
-
-
+        displayHome();
 
 //        searchEditText = findViewById(R.id.searchEditText);
 //        ImageView searchButton = findViewById(R.id.searchButton);
@@ -84,6 +81,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         bottomNavigationView.setOnItemSelectedListener(this);
     }
 
+    private void displayHome(){
+        displayFragment(R.id.mainActivityFragment, new MainPageFragment());
+    }
+    private void displayOrders(){
+        displayFragment(R.id.mainActivityFragment, new OrdersFragment());
+    }
     private void displayFragment(int displayer, Fragment fragment){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -137,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         int itemId = item.getItemId();
 
         if (itemId == R.id.navigation_home) {
-            // Handle Home item selection
+            displayHome();
             return true;
         } else if (itemId == R.id.navigation_water_drop) {
             // Handle water drop item selection
@@ -148,8 +151,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         } else if (itemId == R.id.navigation_notifications) {
             // Handle Notifications item selection
             return true;
-        } else if (itemId == R.id.navigation_chat) {
-            // Handle chat item selection
+        } else if (itemId == R.id.navigation_orders) {
+            displayOrders();
             return true;
         }
         return false;

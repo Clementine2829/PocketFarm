@@ -16,8 +16,12 @@
         android:id="@+id/navigation_notifications"
         android:icon="@drawable/ic_notifications"
         android:title="Notifications" />
+<!--    <item-->
+<!--        android:id="@+id/navigation_chat"-->
+<!--        android:icon="@drawable/ic_chat"-->
+<!--        android:title="Chat" />-->
     <item
-        android:id="@+id/navigation_chat"
-        android:icon="@drawable/ic_chat"
-        android:title="Chat" />
+        android:id="@+id/navigation_orders"
+        android:icon="@drawable/ic_orders"
+        android:title="Orders" />
 </menu>
