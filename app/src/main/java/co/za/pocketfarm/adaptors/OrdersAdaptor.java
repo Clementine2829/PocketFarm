@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.imageview.ShapeableImageView;
+
 import java.util.List;
 
 import co.za.pocketfarm.R;
@@ -17,7 +19,7 @@ import co.za.pocketfarm.models.Orders;
 
 public class OrdersAdaptor extends RecyclerView.Adapter<OrdersAdaptor.CatalogViewHolder> {
 
-    private List<Orders> orders;
+    private final List<Orders> orders;
 
     public OrdersAdaptor(List<Orders> orders) {
         this.orders = orders;
@@ -51,7 +53,7 @@ public class OrdersAdaptor extends RecyclerView.Adapter<OrdersAdaptor.CatalogVie
     }
 
     public static class CatalogViewHolder extends RecyclerView.ViewHolder{
-        public ImageView imageView;
+        public ShapeableImageView imageView;
         public TextView orderNumber, numberOfItems, totalAmount;
         public Button btnCheckOut;
 

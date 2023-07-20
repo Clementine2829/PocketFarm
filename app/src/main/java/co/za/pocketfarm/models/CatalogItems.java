@@ -7,16 +7,17 @@ public class CatalogItems {
     private final String title;
     private final String miniDescription;
     private final String description;
-    private final String price;
+    private final double price;
+    private double special = 0.00;
     private int quantity = 1;
 
-    public CatalogItems(String id, int imageView, String title, String miniDescription, String description, String price) {
+    public CatalogItems(String id, int imageView, String title, String miniDescription, String description, double price) {
         this.id = id;
         this.imageView = imageView;
         this.title = title;
         this.miniDescription = miniDescription;
         this.description = description;
-        this.price = price;
+        this.price = price;;
     }
 
     public String getId() {
@@ -39,7 +40,7 @@ public class CatalogItems {
         return description;
     }
 
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -49,5 +50,27 @@ public class CatalogItems {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public double getSpecial() {
+        return special;
+    }
+
+    public void setSpecial(double special) {
+        this.special = special;
+    }
+
+    @Override
+    public String toString() {
+        return "CatalogItems{" +
+                "id='" + id + '\'' +
+                ", imageView=" + imageView +
+                ", title='" + title + '\'' +
+                ", miniDescription='" + miniDescription + '\'' +
+                ", description='" + description + '\'' +
+                ", price='" + price + '\'' +
+                ", special='" + special + '\'' +
+                ", quantity=" + quantity +
+                '}';
     }
 }

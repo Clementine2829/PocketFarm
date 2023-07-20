@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imgCatalog"
             android:layout_width="150dp"
             android:layout_height="145dp"
@@ -27,7 +27,8 @@
             android:background="@drawable/camera_selector_holder"
             android:contentDescription="@string/todo"
             android:scaleType="centerCrop"
-            android:src="@drawable/img2" />
+            app:shapeAppearanceOverlay="@style/RoundedImageView" />
+
     </FrameLayout>
 
     <LinearLayout
@@ -82,6 +83,18 @@
                 android:textColor="@color/green"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/special"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:text="R 149.99"
+                android:textColor="@color/green"
+                android:textStyle="bold"
+                android:layout_marginStart="@dimen/margin_normal"
+                app:layout_constraintStart_toEndOf="@+id/price"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btnAddToCart"

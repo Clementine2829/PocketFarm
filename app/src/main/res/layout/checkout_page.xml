@@ -1,10 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="@dimen/padding_normal"
+    android:orientation="vertical">
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="I am checking out" />
+        android:layout_height="wrap_content"
+        android:text="Bucket list"
+        android:textAllCaps="true"
+        android:gravity="center"
+        android:textColor="@color/green"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_size_large"
+        android:layout_margin="@dimen/margin_normal" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/padding_mid_small">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/checkoutList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_xx_large"
+            android:paddingBottom="@dimen/padding_xx_large"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Step 1 of 3"
+            android:textSize="@dimen/text_size_small"
+            android:textStyle="italic"
+            android:gravity="center"
+            android:layout_gravity="center"/>
+        <Button
+            android:id="@+id/btnCheckout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/green"
+            android:text="checkout" />
+    </LinearLayout>
+
+</LinearLayout>
