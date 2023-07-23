@@ -42,18 +42,15 @@ public class ScanItem extends AppCompatActivity {
             pleaseWaitDialog.show(this, "Analyzing image. Please wait...");
             analyzingImage = true;
 
-            pleaseWaitDialog.performBackgroundTask(new PleaseWaitDialog.OnBackgroundTaskCompleteListener() {
-                @Override
-                public void onTaskComplete() {
-                    setTitle("Image analyzed");
+            pleaseWaitDialog.performBackgroundTask(() -> {
+                setTitle("Image analyzed");
 
-                    launchResults();
+                launchResults();
 
-                    analyzingImage = false;
-                    btnUploadImage.setVisibility(View.GONE);
-                    click_image_id.setVisibility(View.GONE);
-                    pleaseWaitDialog.dismiss();
-                }
+                analyzingImage = false;
+                btnUploadImage.setVisibility(View.GONE);
+                click_image_id.setVisibility(View.GONE);
+                pleaseWaitDialog.dismiss();
             });
 
         });

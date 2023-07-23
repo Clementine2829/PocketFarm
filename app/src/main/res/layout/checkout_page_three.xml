@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/padding_normal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_normal">
+
+        <LinearLayout
+            android:id="@+id/paymentHolder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_normal">
+
+            <!-- RadioGroup for selecting the payment method -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/green"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/margin_normal"
+                android:textAllCaps="true"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:text="Payment Information"
+                android:textSize="@dimen/text_size_large"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupPayment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Credit Card Option -->
+                <RadioButton
+                    android:id="@+id/rbCreditCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Credit Card"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <!-- EditText fields for Credit Card details -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingStart="@dimen/padding_large"
+                    android:visibility="gone"
+                    android:id="@+id/layoutCreditCardDetails">
+
+                    <!-- Credit Card Number -->
+                    <EditText
+                        android:id="@+id/etCardNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Card Number"
+                        android:inputType="number"/>
+
+                    <!-- Expiry Date -->
+                    <EditText
+                        android:id="@+id/etExpiryDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Expiry Date (MM/YY)"
+                        android:inputType="number"/>
+
+                    <!-- CVV -->
+                    <EditText
+                        android:id="@+id/etCVV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="CVV"
+                        android:inputType="number"/>
+                </LinearLayout>
+
+                <!-- Bank Transfer Option -->
+                <RadioButton
+                    android:id="@+id/rbBankTransfer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bank Transfer"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <!-- Bank Transfer instructions -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingStart="@dimen/padding_large"
+                    android:visibility="gone"
+                    android:id="@+id/layoutBankTransferInstructions">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bank Name: PocketFarm Bank"
+                        android:textSize="@dimen/text_size_normal" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Account Number: 1234567890"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Branch #: 1230 "
+                        android:textSize="@dimen/text_size_normal" />
+
+                    <!-- You can provide additional instructions here -->
+                </LinearLayout>
+
+                <!-- PayPal Option -->
+                <RadioButton
+                    android:id="@+id/rbPayFast"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PayFast"
+                    android:textSize="@dimen/text_size_normal" />
+
+            </RadioGroup>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Page 3 of 3"
+                android:textSize="@dimen/text_size_small"
+                android:textStyle="italic"
+                android:layout_marginTop="@dimen/margin_large"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/btnCheckout" />
+
+            <Button
+                android:id="@+id/btnMakePayment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_xx_large"
+                 android:layout_marginEnd="@dimen/margin_xx_large"
+                android:backgroundTint="@color/green"
+                android:text="make payment"
+                android:textSize="@dimen/text_size_normal" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/paidHolder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            android:padding="@dimen/padding_normal">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="@dimen/margin_large"
+                android:src="@drawable/okay" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Payment successfully"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/margin_large"
+                android:textStyle="bold"
+                android:textSize="@dimen/text_size_large" />
+
+            <Button
+                android:id="@+id/backToMain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Back to main"
+                android:backgroundTint="@color/green"
+                android:layout_marginTop="@dimen/margin_xx_large"
+                android:layout_marginStart="@dimen/margin_xx_large"
+                android:layout_marginEnd="@dimen/margin_xx_large" />
+
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

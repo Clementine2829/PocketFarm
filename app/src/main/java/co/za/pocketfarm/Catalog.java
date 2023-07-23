@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -96,6 +97,14 @@ public class Catalog extends AppCompatActivity {
                         "place on the sun",
                         "Epsom salt (magnesium sulfate) can be used as a supplement to provide magnesium to plants that require it",
                         366.00));
+        i =  new CatalogItems(
+                "6",
+                R.drawable.img6,
+                "Organic Fertilizers",
+                "place on the sun",
+                "Organic fertilizers, such as compost or well-rotted manure, provide essential nutrients to plants without harmful chemicals.",
+                150.00);
+        itemsInCart.add(i);
 
         RecyclerView recyclerView = findViewById(R.id.catalogList);
         CatalogAdaptor adaptor = new CatalogAdaptor(itemsInCart);
@@ -128,9 +137,8 @@ public class Catalog extends AppCompatActivity {
     }
     private void loadCheckoutPage(){
         dialogBuilder = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.checkout_page, null);
+        View view = getLayoutInflater().inflate(R.layout.checkout_page_one, null);
 
-        System.out.println(selectedItems);
         RecyclerView recyclerView = view.findViewById(R.id.checkoutList);
         CheckoutAdaptor adaptor = new CheckoutAdaptor(selectedItems);
         recyclerView.setHasFixedSize(false);
@@ -138,20 +146,21 @@ public class Catalog extends AppCompatActivity {
         recyclerView.setAdapter(adaptor);
 
         view.findViewById(R.id.btnCheckout).setOnClickListener(view1 -> {
-            StringBuilder message = new StringBuilder("The following items have zero quantity: ");
+            StringBuilder message = new StringBuilder("The following item(s) have zero quantity: ");
             boolean zeroQuantity = false;
             int index = 1;
             for (CatalogItems item: selectedItems) {
                 if(item.getQuantity() == 0){
                     message.append("\n").append(index).append(". ").append(item.getTitle());
                     zeroQuantity = true;
+                    index++;
                 }
             }
             message.append("\nDo you want to continue? ");
             if(zeroQuantity){
-                confirm(message.toString());
+                confirm(message.toString(), selectedItems);
             }else{
-                checkout();
+                checkout(selectedItems);
             }
         });
 
@@ -160,17 +169,18 @@ public class Catalog extends AppCompatActivity {
         dialog.show();
     }
 
-    private void confirm(String message){
+    private void confirm(String message, List<CatalogItems> selectedItems){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Confirm");
         builder.setMessage(message);
-        builder.setPositiveButton("Yes", (dialog, which) -> checkout());
+        builder.setPositiveButton("Yes", (dialog, which) -> checkout(selectedItems));
         builder.setNeutralButton("Cancel", (dialog, which) ->{});
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
-    private void checkout(){
-        startActivity(new Intent(this, Checkout.class));
+    private void checkout(List<CatalogItems> selectedItems){
+        String [] data = {"pageTwo", selectedItems.toString()};
+        startActivity(new Intent(this, Checkout.class).putExtra("data", Arrays.toString(data)));
         finish();
     }
     @Override

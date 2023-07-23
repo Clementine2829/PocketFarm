@@ -51,12 +51,11 @@ public class CheckoutAdaptor extends RecyclerView.Adapter<CheckoutAdaptor.Checko
             holder.quantity.setText(String.valueOf(checkoutItem.getQuantity()));
             holder.price.setText(String.valueOf(price));
         });
-        System.out.println("\ncheckoutItem: " + checkoutItem);
         if(position != 0) holder.qty.setVisibility(View.INVISIBLE);
         holder.title.setText(checkoutItem.getTitle());
-        String tempDescription = (checkoutItem.getDescription().length() < 40) ?
+        String tempDescription = (checkoutItem.getDescription().length() < 35) ?
                                     checkoutItem.getDescription() :
-                                    checkoutItem.getDescription().substring(0, 38) + "...";
+                                    checkoutItem.getDescription().substring(0, 32) + "...";
         holder.description.setText(tempDescription);
         holder.price.setText(String.valueOf(price));
         holder.quantity.setText(String.valueOf(checkoutItem.getQuantity()));
@@ -89,7 +88,8 @@ public class CheckoutAdaptor extends RecyclerView.Adapter<CheckoutAdaptor.Checko
         if(_p[1].length() != 2){
             _p[1] = "0" + _p[1];
         }
-        price = (checkoutItem.getQuantity() == 1) ? _p[0] + "." + _p[1] : tempPrice + " * " + checkoutItem.getQuantity() + " = " + _p[0] + "." + _p[1];
+//        price = (checkoutItem.getQuantity() == 1) ? _p[0] + "." + _p[1] : tempPrice + " * " + checkoutItem.getQuantity() + " = " + _p[0] + "." + _p[1];
+        price = _p[0] + "." + _p[1];
     }
 
     public static class CheckoutViewHolder extends RecyclerView.ViewHolder{
