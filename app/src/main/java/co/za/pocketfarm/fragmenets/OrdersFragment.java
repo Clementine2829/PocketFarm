@@ -31,7 +31,6 @@ public class OrdersFragment extends Fragment {
 
         RecyclerView recyclerView = view.findViewById(R.id.ordersItems);
 
-        // Set the orientation of the layout manager to horizontal
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
 

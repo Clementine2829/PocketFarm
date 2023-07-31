@@ -1,5 +1,7 @@
 package co.za.pocketfarm;
 
+import static co.za.pocketfarm.fragmenets.BlogPostsFragment.posts;
+
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -29,6 +31,7 @@ import java.util.List;
 import java.util.Objects;
 
 import co.za.pocketfarm.adaptors.TipsAndNotificationsAdaptor;
+import co.za.pocketfarm.fragmenets.BlogPostsFragment;
 import co.za.pocketfarm.fragmenets.MainPageFragment;
 import co.za.pocketfarm.fragmenets.NotificationsFragment;
 import co.za.pocketfarm.fragmenets.OrdersFragment;
@@ -42,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private EditText searchEditText;
     AlertDialog.Builder dialogBuilder;
     AlertDialog dialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +66,16 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 Toast.makeText(MainActivity.this, "You have clicked on the tittle", Toast.LENGTH_LONG).show();
             }
         });
-        displayHome();
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            String fragmentToDisplay = extras.getString("fragment");
+            if(fragmentToDisplay.equals("blog")) openChats();
+            else if(fragmentToDisplay.equals("home")) displayHome();
+            else displayHome();
+        }else{
+            displayHome();
+        }
+
 
 //        searchEditText = findViewById(R.id.searchEditText);
 //        ImageView searchButton = findViewById(R.id.searchButton);
@@ -79,10 +92,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnItemSelectedListener(this);
+
+
     }
 
     private void displayHome(){
         displayFragment(R.id.mainActivityFragment, new MainPageFragment());
+        findViewById(R.id.search_holder).setVisibility(View.VISIBLE);
+    }
+    private void openChats(){
+        displayFragment(R.id.mainActivityFragment, new BlogPostsFragment());
+        findViewById(R.id.search_holder).setVisibility(View.GONE);
     }
     private void displayOrders(){
         displayFragment(R.id.mainActivityFragment, new OrdersFragment());
@@ -115,18 +135,26 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         View view = getLayoutInflater().inflate(R.layout.image_picker, null);
 
         view.findViewById(R.id.cameraPlants).setOnClickListener(view1 -> {
-            startActivity(new Intent(this, ScanItem.class));
-            finish();
+            launchCamera("plants");
         });
-        view.findViewById(R.id.cameraPlants).setOnClickListener(view1 -> {
-            startActivity(new Intent(this, ScanItem.class));
-            finish();
+        view.findViewById(R.id.cameraLeaves).setOnClickListener(view1 -> {
+            launchCamera("leaves");
+        });
+        view.findViewById(R.id.cameraSoil).setOnClickListener(view1 -> {
+            launchCamera("soil");
+        });
+        view.findViewById(R.id.cameraPests).setOnClickListener(view1 -> {
+            launchCamera("pests");
         });
 
         dialogBuilder.setView(view);
         dialog = dialogBuilder.create();
         dialog.show();
 
+    }
+    private void launchCamera(String scanType){
+        startActivity(new Intent(this, ScanItem.class).putExtra("scanType", scanType));
+        finish();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -142,14 +170,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         if (itemId == R.id.navigation_home) {
             displayHome();
             return true;
-        } else if (itemId == R.id.navigation_water_drop) {
-            // Handle water drop item selection
+        } else if (itemId == R.id.navigation_blog) {
+            openChats();
             return true;
         } else if (itemId == R.id.navigation_scan) {
             launchCamera();
             return true;
         } else if (itemId == R.id.navigation_notifications) {
-            // Handle Notifications item selection
+
             return true;
         } else if (itemId == R.id.navigation_orders) {
             displayOrders();

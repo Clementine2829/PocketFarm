@@ -1,0 +1,87 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_large">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_large"
+            android:textStyle="bold"
+            android:textColor="@color/green"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/margin_large"/>
+
+        <TextView
+            android:id="@+id/body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_normal"/>
+
+        <LinearLayout
+            android:id="@+id/commentsAndLikes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/margin_large"
+            android:padding="@dimen/padding_small">
+
+            <TextView
+                android:id="@+id/likesCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/green"
+                android:drawableTint="@color/green"
+                android:textColor="@color/green"
+                android:drawableLeft="@drawable/ic_thumb_up"
+                android:text="\t25"/>
+            <TextView
+                android:id="@+id/dislikeCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTint="@color/green"
+                android:textColor="@color/green"
+                android:layout_marginLeft="@dimen/margin_xx_large"
+                android:drawableLeft="@drawable/ic_thumb_down"
+                android:text="\t25"/>
+
+            <TextView
+                android:id="@+id/commentCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTint="@color/green"
+                android:textColor="@color/green"
+                android:layout_marginLeft="@dimen/margin_xx_large"
+                android:drawableLeft="@drawable/ic_comments"
+                android:text="\t25"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/margin_large"
+            android:padding="@dimen/padding_small">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/comments"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="@dimen/padding_small"
+                android:paddingEnd="@dimen/padding_small"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/heading" />
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
