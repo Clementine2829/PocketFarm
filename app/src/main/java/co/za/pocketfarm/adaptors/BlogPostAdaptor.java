@@ -58,20 +58,20 @@ public class BlogPostAdaptor extends RecyclerView.Adapter<BlogPostAdaptor.BlogPo
             activity.startActivity(new Intent(activity, ViewBlog.class).putExtra("id", blogPost.getPostId()));
             activity.finish();
         });
-//        holder.likes.setOnClickListener(view -> {
-//            holder.likes.setText(String.format("\t%s", blogPost.getLikes() + 1));
-//
-//            Drawable[] drawables = holder.likes.getCompoundDrawables();
-//
-//            Drawable leftDrawable = drawables[0]; // index 0 is for left drawable, 1 for top, 2 for right, 3 for bottom
-//
-//            int tintColor = Color.RED;
-//
-//            leftDrawable.setColorFilter(tintColor, PorterDuff.Mode.SRC_IN);
-//        });
-//        holder.dislikes.setOnClickListener(view -> {
-//            holder.dislikes.setText(String.format("\t%s", blogPost.getDislikes() + 1));
-//        });
+        holder.likes.setOnClickListener(view -> {
+            holder.likes.setText(String.format("\t%s", blogPost.getLikes() + 1));
+
+            Drawable[] drawables = holder.likes.getCompoundDrawables();
+
+            Drawable leftDrawable = drawables[0]; // index 0 is for left drawable, 1 for top, 2 for right, 3 for bottom
+
+            int tintColor = Color.RED;
+
+            leftDrawable.setColorFilter(tintColor, PorterDuff.Mode.SRC_IN);
+        });
+        holder.dislikes.setOnClickListener(view -> {
+            holder.dislikes.setText(String.format("\t%s", blogPost.getDislikes() + 1));
+        });
     }
 
     @Override
