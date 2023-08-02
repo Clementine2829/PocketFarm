@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/padding_large"
-    android:background="@drawable/img"
+    android:background="@drawable/img15"
     tools:context=".Launcher">
 
     <Button
@@ -15,7 +15,10 @@
         android:text="Register"
         android:textStyle="bold"
         android:backgroundTint="@color/green"
-        android:padding="@dimen/padding_large"
+        android:paddingTop="@dimen/padding_large"
+        android:paddingBottom="@dimen/padding_large"
+        android:paddingStart="@dimen/padding_xx_large"
+        android:paddingEnd="@dimen/padding_xx_large"
         android:layout_marginStart="@dimen/margin_x_large"
         android:layout_marginBottom="@dimen/margin_normal"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +27,10 @@
         android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/padding_large"
+        android:paddingTop="@dimen/padding_large"
+        android:paddingBottom="@dimen/padding_large"
+        android:paddingStart="@dimen/padding_xx_large"
+        android:paddingEnd="@dimen/padding_xx_large"
         android:layout_marginEnd="@dimen/margin_x_large"
         android:layout_marginBottom="@dimen/margin_normal"
         android:textStyle="bold"

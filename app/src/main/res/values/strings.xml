@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PocketFarm</string>
+    <string name="app_name">Pocket Farm</string>
     <string name="invalid_login_credentials">Invalid login credentials</string>
     <string name="search">Search</string>
     <string name="todo">TODO</string>
@@ -8,6 +8,7 @@
     <string name="logout">Logout</string>
     <string name="about">About</string>
     <string name="notifications">Notifications</string>
+    <string name="growth">Growth</string>
     <string name="dummy_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod
         tempor incididunt ut labore et dolore magna aliqua.\n\nUt enim ad minim veniam, quisnostrud
         exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\nDuis aute iruredolor

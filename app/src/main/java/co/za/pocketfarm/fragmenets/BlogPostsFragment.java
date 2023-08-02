@@ -111,7 +111,7 @@ public class BlogPostsFragment extends Fragment {
 
         p3.setDislikes(1);
 
-        p1.setComments(12);
+        p1.setComments(4);
         p2.setComments(13);
 
         posts.add(p1);

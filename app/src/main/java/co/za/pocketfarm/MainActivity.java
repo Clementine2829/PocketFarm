@@ -1,7 +1,5 @@
 package co.za.pocketfarm;
 
-import static co.za.pocketfarm.fragmenets.BlogPostsFragment.posts;
-
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -21,28 +19,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
-import co.za.pocketfarm.adaptors.TipsAndNotificationsAdaptor;
 import co.za.pocketfarm.fragmenets.BlogPostsFragment;
 import co.za.pocketfarm.fragmenets.MainPageFragment;
-import co.za.pocketfarm.fragmenets.NotificationsFragment;
 import co.za.pocketfarm.fragmenets.OrdersFragment;
-import co.za.pocketfarm.fragmenets.TipsFragment;
-import co.za.pocketfarm.models.ObjectTypes;
-import co.za.pocketfarm.models.Tips;
-import co.za.pocketfarm.models.TipsOrNotifications;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnItemSelectedListener{
 
-    private EditText searchEditText;
     AlertDialog.Builder dialogBuilder;
     AlertDialog dialog;
 
@@ -51,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         Objects.requireNonNull(this.getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
@@ -92,8 +78,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnItemSelectedListener(this);
-
-
     }
 
     private void displayHome(){
@@ -212,4 +196,5 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         AlertDialog alertDialog = confirm.create();
         alertDialog.show();
     }
+
 }

@@ -1,5 +1,6 @@
 package co.za.pocketfarm.adaptors;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,19 +30,17 @@ public class TipsAndNotificationsAdaptor extends RecyclerView.Adapter<RecyclerVi
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // type 0 = tips & type 1 = notifications
         if(viewType == 0){
-            System.out.println("Types here: 0123");
             return new TipsViewHolder (
                     LayoutInflater.from(parent.getContext()).inflate(
-                            R.layout.tips_items,
+                            R.layout.tips_item,
                             parent,
                             false
                     )
             );
         }else{
-            System.out.println("Types here: 1234 " + viewType);
             return new NotificationsViewHolder (
                     LayoutInflater.from(parent.getContext()).inflate(
-                            R.layout.notifications_items,
+                            R.layout.notifications_item,
                             parent,
                             false
                     )
@@ -63,6 +62,11 @@ public class TipsAndNotificationsAdaptor extends RecyclerView.Adapter<RecyclerVi
     @Override
     public int getItemCount() {
         return objectTypes.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+       return objectTypes.get(position).getType();
     }
 
     public static class TipsViewHolder extends RecyclerView.ViewHolder {
@@ -103,9 +107,15 @@ public class TipsAndNotificationsAdaptor extends RecyclerView.Adapter<RecyclerVi
         void setupNotificationsViewHolder(TipsOrNotifications tipsOrNotifications){
             imageView.setImageResource(tipsOrNotifications.getImage());
             tempStatus.setText(tipsOrNotifications.getText1());
-            farmName.setText(String.format("By %s", tipsOrNotifications.getText2()));
+            farmName.setText(tipsOrNotifications.getText2());
             weatherTemperature.setText(tipsOrNotifications.getText3());
-
+            if(tipsOrNotifications.getStatus() == 1){
+                tempStatus.setBackgroundColor(Color.rgb(0, 128, 43));
+            }else if(tipsOrNotifications.getStatus() == 2){
+                tempStatus.setBackgroundColor(Color.rgb(204, 153, 0));
+            }else if(tipsOrNotifications.getStatus() == 3){
+                tempStatus.setBackgroundColor(Color.rgb(204, 0, 0));
+            }
         }
     }
 

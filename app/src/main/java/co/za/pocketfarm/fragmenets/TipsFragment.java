@@ -35,19 +35,22 @@ public class TipsFragment extends Fragment {
 
         // Create and set the adapter
         List<TipsOrNotifications> tipsItems = new ArrayList<>();
-        String title = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas";
-        String dateUpdated = "17/07/2023";
-        tipsItems.add(new TipsOrNotifications(R.drawable.img1, title, "Clement", dateUpdated));
-        title = "Maecenas ut suscipit velit, sit amet viverra lectus. Vestibulum ante ipsum primis ";
-        dateUpdated = "02/07/2023";
-        tipsItems.add(new TipsOrNotifications(R.drawable.img2, title, "Bob Smith", dateUpdated));
-        title = "Donec nec tellus eleifend, cursus nunc et, fermentum tellus. Phasellus sapien lacus, consequat";
-        tipsItems.add(new TipsOrNotifications(R.drawable.img3, title, "Sophia Moore", dateUpdated));
-//        title = "Integer dolor elit, interdum nec posuere vel, laoreet non justo.";
-//        dateUpdated = "29/08/2023";
-//        tipsItems.add(new TipsOrNotifications(R.drawable.img4, title, "Jame", dateUpdated));
-//        title = "Donec nec tellus eleifend, cursus nunc et, fermentum tellus. Phasellus sapien lacus, consequat";
-//        tipsItems.add(new TipsOrNotifications(R.drawable.img5, title, "Clement", dateUpdated));
+        String title = "Soil Health: Rotating Crops and Adding Organic Matter for Nutrient Balance";
+        String dateUpdated = "01/02/2023";
+        tipsItems.add(new TipsOrNotifications(R.drawable.img20, title, "Clement", dateUpdated));
+        title = "Smart Plant Choices: Selecting Varieties Suited to Your Climate";
+        dateUpdated = "18/07/2023";
+        tipsItems.add(new TipsOrNotifications(R.drawable.img24, title, "Stuff", dateUpdated));
+        title = "Natural Pest Control: Pest Management Techniques to integrate in your farm ";
+        dateUpdated = "18/07/2023";
+        tipsItems.add(new TipsOrNotifications(R.drawable.img18, title, "Thulani", dateUpdated));
+        title = "Fertilization Fundamentals: Nourishing Plants with the Right Nutrients";
+        dateUpdated = "18/07/2023";
+        tipsItems.add(new TipsOrNotifications(R.drawable.img6, title, "Livett", dateUpdated));
+        title = "Water Wisely: Following the Right Amount and Timing for Plant Hydration";
+        dateUpdated = "18/07/2023";
+        tipsItems.add(new TipsOrNotifications(R.drawable.img4, title, "Stuff", dateUpdated));
+
 
 
         List<ObjectTypes> tipsObjects = new ArrayList<>();
