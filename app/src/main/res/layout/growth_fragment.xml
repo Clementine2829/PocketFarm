@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent"
-android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/margin_normal">
 
     <TextView
-        android:id="@+id/tips_heading"
+        android:id="@+id/growth_heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/recyclerView"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
         android:layout_marginBottom="@dimen/margin_mid_small"
-        android:text="@string/tips"
+        android:text="@string/growth"
         android:textAllCaps="true"
         android:textColor="@color/green"
         android:textSize="@dimen/text_size_large"
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/btnTips"
+        android:id="@+id/btnGrowth"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_alignParentTop="true"
@@ -34,7 +37,7 @@ android:layout_height="wrap_content">
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnTips"
+        android:layout_below="@+id/btnGrowth"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="0dp"

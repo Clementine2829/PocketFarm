@@ -26,12 +26,14 @@ public class MainPageFragment extends Fragment {
 
         TipsFragment tipsFragment = new TipsFragment();
         NotificationsFragment notificationsFragment = new NotificationsFragment();
+        GrowthFragment growthFragment = new GrowthFragment();
 
         FragmentManager fragmentManager = getChildFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         fragmentTransaction.replace(R.id.displayTipsFragment, tipsFragment);
         fragmentTransaction.replace(R.id.displayNotificationsFragment, notificationsFragment);
+        fragmentTransaction.replace(R.id.displayGrowthFragment, growthFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
