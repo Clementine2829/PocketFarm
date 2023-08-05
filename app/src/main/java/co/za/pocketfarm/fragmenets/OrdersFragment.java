@@ -36,12 +36,12 @@ public class OrdersFragment extends Fragment {
 
         // Create and set the adapter
         List<Orders> orders = new ArrayList<>();
-        orders.add(new Orders("1", R.drawable.img1, "544", "5 Items", "R55.45"));
-        orders.add(new Orders("2", R.drawable.img2, "125", "2 Items", "R89.95"));
+        orders.add(new Orders("1", R.drawable.img30, "544", "5 Items", "R55.45"));
+        orders.add(new Orders("2", R.drawable.img29, "125", "2 Items", "R89.95"));
         orders.add(new Orders("3", R.drawable.img3, "885", "1 Item", "R50.00"));
-        orders.add(new Orders("4", R.drawable.img4, "984", "55 Items", "R14565.45"));
-        orders.add(new Orders("4", R.drawable.img4, "984", "55 Items", "R14565.45"));
-        orders.add(new Orders("4", R.drawable.img4, "984", "55 Items", "R14565.45"));
+        orders.add(new Orders("4", R.drawable.img28, "984", "55 Items", "R14565.45"));
+        orders.add(new Orders("4", R.drawable.img26, "984", "55 Items", "R14565.45"));
+        orders.add(new Orders("4", R.drawable.img24, "984", "55 Items", "R14565.45"));
 
         OrdersAdaptor adapter = new OrdersAdaptor(orders);
         recyclerView.setAdapter(adapter);
