@@ -51,17 +51,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
+    <TextView
+        android:id="@+id/btnRetakeImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/dark_green"
+        android:text="Not what you expected? \nClick here to take a new image"
+        android:textStyle="italic"
+        android:gravity="center"
+        android:textColor="@color/red"
+        android:textSize="@dimen/text_size_small"
+        android:layout_marginTop="@dimen/margin_xx_large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description" />
+
     <Button
         android:id="@+id/shopForRemedies"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/green"
-        android:text="SHOP FOR REMEDIES"
-        android:layout_marginTop="@dimen/margin_xx_large"
         android:padding="@dimen/padding_large"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="SHOP FOR REMEDIES"
         android:textStyle="bold"
+        android:layout_marginTop="@dimen/margin_xx_large"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description" />
+        app:layout_constraintTop_toBottomOf="@+id/btnRetakeImage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

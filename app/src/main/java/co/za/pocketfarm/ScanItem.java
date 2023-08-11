@@ -4,6 +4,8 @@ package co.za.pocketfarm;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Spannable;
@@ -33,7 +35,7 @@ public class ScanItem extends AppCompatActivity {
         setContentView(R.layout.activity_scan_item);
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        setTitle("Upload picture");
+        setTitle("Upload image");
 
         click_image_id = findViewById(R.id.click_image);
         Button btnUploadImage = findViewById(R.id.upload_image);
@@ -104,14 +106,6 @@ public class ScanItem extends AppCompatActivity {
                         "\n\nImpact:\nInfected leaves become distorted, turn yellow, and may eventually die. " +
                         "Severe infections can reduce photosynthesis and overall plant vitality.";
                 break;
-            case "soil":
-                strDisease = "Pythium Root Rot";
-                strDescription = "Description: \nPythium root rot is a soilborne disease caused by various species of " +
-                        "the Pythium fungus. It affects the root systems of plants, " +
-                        "leading to reduced water and nutrient uptake, stunted growth, and overall plant decline." +
-                        "\n\nImpact:\nInfected plants exhibit wilting, yellowing of leaves, and reduced vigor. " +
-                        "It's particularly problematic in waterlogged or poorly drained soils.";
-                break;
             case "pests":
                 strDisease = "Aphids";
                 strDescription = "Description: \nAphids are small, soft-bodied insects that feed on the sap of plants " +
@@ -126,25 +120,44 @@ public class ScanItem extends AppCompatActivity {
                 strDisease = "";
                 strDescription = "";
         }
+        if(strDisease.isEmpty() || strDescription.isEmpty()){
 
-        strDisease = "Disease: " + strDisease;
-        Spannable spannableDisease = new SpannableString(strDisease);
-        Spannable spannable = new SpannableString(strDescription);
-        int startOne = 0;
-        int endOne = 11;
-        int startTwo = strDescription.indexOf("\n\nImpact:\n");
-        int endTwo = startTwo + 10;
+                strDisease = "Soil: Clay Soil";
+                strDescription = "Texture: Clay soil is composed of fine particles, leading to poor drainage and compactness.\n" +
+                        "   - pH Level: Usually has a pH level between 7.0 to 8.0, making it slightly alkaline to neutral.\n" +
+                        "   - Fertility: High fertility as it retains nutrients well, but plants may struggle with root development.\n" +
+                        "   - Water Retention: Excellent water-holding capacity, but it can cause waterlogging in excessive rains.\n" +
+                        "   - Suitable Plants: Cabbage, broccoli, beans, and other deep-rooted plants can do well in clay soil.";
+            disease.setText(strDisease);
+            disease.setTextColor(Color.BLACK);
+            disease.setTypeface(Typeface.DEFAULT_BOLD);
+            description.setText(strDescription);
+            description.setGravity(0);
 
-        spannable.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), startOne, endOne, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        spannable.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), startTwo, endTwo, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }else {
+            strDisease = "Disease: " + strDisease;
+            Spannable spannableDisease = new SpannableString(strDisease);
+            Spannable spannable = new SpannableString(strDescription);
+            int startOne = 0;
+            int endOne = 11;
+            int startTwo = strDescription.indexOf("\n\nImpact:\n");
+            int endTwo = startTwo + 10;
 
-        spannableDisease.setSpan(new ForegroundColorSpan(ContextCompat.getColor(this, R.color.black)), 0, 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            spannable.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), startOne, endOne, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            spannable.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), startTwo, endTwo, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-        description.setText(spannable);
-        disease.setText(spannableDisease);
+            spannableDisease.setSpan(new ForegroundColorSpan(ContextCompat.getColor(this, R.color.black)), 0, 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+            description.setText(spannable);
+            disease.setText(spannableDisease);
+        }
 
         view.findViewById(R.id.shopForRemedies).setOnClickListener(view1 -> {
             startActivity(new Intent(this, Catalog.class));
+            finish();
+        });
+        view.findViewById(R.id.btnRetakeImage).setOnClickListener(view1 -> {
+            startActivity(new Intent(this, ScanItem.class).putExtra("scanType", scanType));
             finish();
         });
         dialogBuilder.setCancelable(false);
